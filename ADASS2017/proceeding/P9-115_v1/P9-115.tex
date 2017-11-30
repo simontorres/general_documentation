@@ -33,7 +33,7 @@
 % Use mixed case type for the shortened title
 % Ensure shortened title does not cause an overfull hbox LaTeX error
 % See ASPmanual2010.pdf 2.1.4  and ManuscriptInstructions.pdf for more details
-\markboth{Torres-Robledo, Brice\~no, Quint and Sanmartim}{The Goodman HTS Data Reduction Pipeline}
+\markboth{Torres-Robledo, Brice\~no, Quint, and Sanmartim}{The Goodman HTS Data Reduction Pipeline}
 
 \begin{document}
 
@@ -47,7 +47,7 @@
 % authors share an affiliation this should be in a single \affil which can then
 % be referenced for several author names.
 % See ManuscriptInstructions.pdf and ASPmanual2010.pdf 3.1.4 for more details
-\author{Sim\'on Torres-Robledo,$^1$ C\'esar Brice\~no,$^{1, 2}$, Bruno Quint$^1$ and David Sanmartim$^3$
+\author{Sim\'on Torres-Robledo,$^1$ C\'esar Brice\~no,$^{1, 2}$, Bruno Quint$^1$, and David Sanmartim$^3$
 \affil{$^1$SOAR Telescope, La Serena, Regi\'on de Coquimbo, Chile; \email{storres@ctio.noao.edu}}
 \affil{$^2$Cerro Tololo Interamerican Observatory, Casilla 603, La Serena, Chile}
 \affil{$^3$Gemini Observatory, Casilla 603, La Serena, Chile}}
@@ -166,10 +166,17 @@ Both scripts can be called with no arguments and should work well for most gener
 and well behaved data, but there is also the possibility of customizing the behavior
 up to a certain level. Cosmic Ray rejection is done with the DCR program,
 written in C \citep{2004PASP..116..148P}. Though our initial plan was to
-implement a Python-only project, we had to adopt LaCosmic
-\citep{2001PASP..113.1420V} did not provide satisfactory results for our
-spectroscopic data. However, LaCosmic is also implemented in the pipeline and
-can be selected with a command line argument. Although the execution sequence
+implement a Python-only project, the Python LaCosmic library \citep{2001PASP..113.1420V}
+did not provide entirely satisfactory results for our spectroscopic data. Still,
+and though the default cosmic ray rejection is DCR, we have left LaCosmic
+implemented in the pipeline, and it can be selected by the user as a command line argument.
+%Cosmic Ray rejection is done with the DCR program,
+%written in C \citep{2004PASP..116..148P}. Though our initial plan was to
+%implement a Python-only project, we had to adopt LaCosmic
+%\citep{2001PASP..113.1420V} did not provide satisfactory results for our
+%spectroscopic data. However, LaCosmic is also implemented in the pipeline and
+%can be selected with a command line argument.
+Although the execution sequence of DCR
 was gracefully integrated into the pipeline's workflow there is a rigidity
 regarding parameter variation, because it uses a parameter file with a specific
 name and at a specific location.
@@ -295,9 +302,10 @@ disk.
 
 Other planned changes are: to modify the overall architecture of the pipeline,
 since it started as two separated projects and evolved into a single one, there
-is a development version that integrates everything as a single package. The 
-ultimate goal in this regard is to make it comply with the Astropy Affiliated
-packages standard although we need to evaluate how quickly we want that.
+is a development version that integrates everything as a single package.
+%The
+%ultimate goal in this regard is to make it comply with the Astropy Affiliated
+%packages standard although we need to evaluate how quickly we want that.
 
 Talking about Astropy, there should be a replacement of tasks that are becoming
 available in Astropy and Astropy Affiliated Packages as they mature, wavelength
