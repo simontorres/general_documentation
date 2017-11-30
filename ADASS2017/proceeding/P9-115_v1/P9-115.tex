@@ -82,29 +82,33 @@ It is capable of delivering spectra in a wavelength range from 3200 \AA{} to 900
 with resolving power ($R=\lambda/\Delta\lambda$) ranging from 800 to 14,000
 depending on the configuration. The Goodman Spectrograph is the workhorse
 instrument of the SOAR Telescope, with about 65\% of the available time on the sky.
-Hence the need of a dedicated pipeline. Although IRAF is considered by many the standard tool
+Hence the need of a dedicated pipeline.
+Moreover, because SOAR is on a path toward increased automation, looking forward
+to be an efficient follow up facility in the LSST era, an automated pipeline
+becomes a critical requirement.
+
+Although IRAF is considered by many the standard tool
 in data reduction, its scope is to provide data reduction and processing
 capabilities to a rather wide variety of cases, thus is a bit hard to implement
-as an automatic pipeline. The SOAR Telescope in general is in a path to increased automation, looking forward to be
-an efficient follow up facility in the LSST era. We chose Python because of its
+as an automatic pipeline.  We chose Python because of its
 versatility, completeness and because it allows for fast development and
 robust products. The existence and maturity of Astropy and its affiliated
 packages was also a big motivation to choose Python.
-Our initial plan considered a Python-only project but we had to change that
-because LaCosmic \citep{2001PASP..113.1420V} did not provide satisfactory results and we had to shift
-to using a program called DCR \citep{2004PASP..116..148P} which is written in C,
-it works very well but does not integrate into Python easily, ideally this
-should be converted into a python C++ extension but it is not a high priority
-task.
-LaCosmic implementation is still part of the pipeline and can be selected with a command
-line argument.
+%Our initial plan considered a Python-only project but we had to change that
+%because LaCosmic \citep{2001PASP..113.1420V} did not provide satisfactory results and we had to shift
+%to using a program called DCR \citep{2004PASP..116..148P} which is written in C,
+%it works very well but does not integrate into Python easily, ideally this
+%should be converted into a python C++ extension but it is not a high priority
+%task.
+%LaCosmic implementation is still part of the pipeline and can be selected with a command
+%line argument.
 
 %Also we wanted the pipeline to be open source and available for everyone; in fact the full
 %project is available on GitHub.
 
 The Goodman Spectroscopic Pipeline will provide clear advantages to users of the
-Goodman Spectrograph if(??) compared to other tools for data reduction by allowing
-them to run full processing of their spectra with one-line command and/(while??) producing
+Goodman Spectrograph compared to other tools for data reduction by allowing
+them to run full processing of their spectra with one-line command while producing
 science-quality data.
 
 %Compared to other tools for data reduction the Goodman Spectroscopic Pipeline
@@ -127,7 +131,12 @@ The project is hosted on GitHub therefore is freely available.
 %but should be part of an integrated system. They evolved into a single project with two main
 %packages that work together.
 In the current stable version (1.0b1) the pipeline is structured as two packages
-with two scripts that call them. ({\bf add here..})
+with two scripts that act as the user interface through a console or terminal.
+The motivation for having two packages is to avoid duplicate work, since
+the Goodman Spectrograph is actually an \emph{imaging spectrograph} the idea is
+that one of the packages contain tools for processing \emph{Imaging} data and
+the 2D part of the \emph{Spectroscopic} data, and the other will continue with
+the specific steps for spectroscopy only.
 
 %The static structure still needs some refactoring and for sure there will be
 %modifications to the dynamic structure.
@@ -143,6 +152,7 @@ For the next release (1.0b2) we are developing a single-package structure that w
 contain sub-packages including the current two as well as new features, such as
 a telemetry package that can be used to monitor the instrument performance by
 comparing wavelength calibration parameters.
+The split-process idea remains but the code is more condensed and better structured.
 %Another very important feature that we are developing is integrated code testing.
 
 \section{Pipeline Use}
@@ -154,12 +164,15 @@ subtraction and flat correction and \verb=redspec= is for the spectroscopic
 part; identification, trace, extraction and wavelength calibration.
 Both scripts can be called with no arguments and should work well for most general use cases
 and well behaved data, but there is also the possibility of customizing the behavior
-up to a certain level. As we mentioned in the introduction, we had to deviate from
-our goal of having a purely Python-written pipeline and go with DCR which is a 
-\verb=C= program that works very well. Although the execution sequence was
-gracefully integrated into the pipeline's workflow there is a rigidity regarding
-parameter variation, because it uses a parameter file with a specific name and at
-a specific location.
+up to a certain level. Cosmic Ray rejection is done with the DCR program,
+written in C \citep{2004PASP..116..148P}. Though our initial plan was to
+implement a Python-only project, we had to adopt LaCosmic
+\citep{2001PASP..113.1420V} did not provide satisfactory results for our
+spectroscopic data. However, LaCosmic is also implemented in the pipeline and
+can be selected with a command line argument. Although the execution sequence
+was gracefully integrated into the pipeline's workflow there is a rigidity
+regarding parameter variation, because it uses a parameter file with a specific
+name and at a specific location.
 
 % For parsing command line arguments we use the standard python library \verb=argparse= which
 % also allows easy integration with other ways of calling the script, from a GUI 
@@ -203,23 +216,24 @@ a specific location.
 
 Perhaps one of the most interesting parts of the code is the interactive and
 automatic wavelength calibration. It relies on a library of previously calibrated
-lamps, this makes things extremely easier compared to other methods you might think.
-The interactive mode was developed to avoid the \emph{big wall} that the automatic
+lamps, which makes things extremely easy compared to other methods, like
+\verb=identify= in IRAF.
+The interactive mode was developed as a way around the complications that the automatic
 wavelength calibration meant at that early stage of development. It allowed us to 
-understand how the data behaved in the wavelength regime. Also and very importantly
-gave us the most useful insight that allowed us to later implement the automatic mode.
+understand how the data behaved in the wavelength regime. Also, and more importantly,
+it gave us useful insight that allowed us to later implement the automatic wavelength solution.
 In order to obtain a wavelength solution in interactive mode, the user has to click-identify 
-the lines in two plots one with a reference lamp plus reference line values and
+the lines in two plots, one with a reference lamp plus reference line values and
 another with the new lamp and the detected lines marked. The clicks are stored in
 two lists that later are used to calculate the fit of a low order Chebyshev polynomial.
-In Python this results in a callable object that you can give a pixel axis as argument 
+In Python this results in a callable object to wich you can assign a pixel axis as argument
 and will return an axis in Angstrom. The use of the reference lamp is only for
 \emph{visual reference}.
 
 The automated wavelength calibration instead detects emission lines in the comparison lamps
 and then splits the spectrum in an even number of parts according to the number of lines detected.
-The reference lamp is also split. Equivalent portions are then cross-correlated 
-thus obtaining an offset value for the corresponding center value, still in pixels, 
+The reference lamp is also split. Equivalent portions are then cross-correlated,
+producing an offset value for the corresponding center value, still in pixels,
 of the lines detected in the new comparison lamp. Using the mathematical model of the reference
 lamp's wavelength-solution  the equivalent line center in angstrom is obtained 
 using the equation $ \lambda_{\AA} = model(pixel + offset)$
@@ -227,14 +241,13 @@ using the equation $ \lambda_{\AA} = model(pixel + offset)$
 
 As a first order filter for mismatched lines the cross-correlation values, which
 are stored separated, will be sigma-clipped using 2-sigmas and one-iteration only.
-This eliminates the most obvious mismatched lines. The ejected values also eject
-their pixel and angstrom equivalents allowing to calculate a cleaner new wavelength solution.
+This eliminates the most obvious mismatched lines. The rejected values also reject
+their pixel and angstrom equivalents, producing a cleaner new wavelength solution.
 
 
 Using the Angstrom values previously found and the detected lines
 plus the newly calculated solution, the differences in angstrom are
-calculated to which values a new sigma-clipping is applied, again
-one iteration two-sigmas, since the distributions are not
+calculated, and a new sigma-clipping is applied, since the distributions are not
 necessarily normal distributions.
 
 Once these values are cleaned of rejected values the final solution
@@ -255,7 +268,7 @@ repeatable and consistent. Since there is no other production-ready pipeline
 available for the Goodman Spectrograph data, at the moment we can only compare it to
 IRAF. Figure \ref{irafcomp} contains the result obtained for the same spectrum using
 the pipeline in automatic mode versus IRAF, by two different users. The good
-match is evident even more when zooming in. 
+match is evident even when zooming in.
 We find that, using the 400 l/mm grating with the $1\arcsec$ slit, which yields
 a resolution R $\sim 800$ (FWHM $\sim 6 \AA$), the pipeline produces an automated 
 wavelength solution with RMS $\sim 0.3 \AA$. This is roughly the same RMS obtained
@@ -275,6 +288,10 @@ expected there are some features still missing. They should appear in future
 releases. Examples are flux calibration, and a complete implementation of fractional pixel
 extraction and optimal extraction \citep{1989PASP..101.1032M} and \citep{1986PASP...98..609H}.
 We also want to change the Matplotlib UI by Qt UIs.
+An important development looking forward will be the implementation of an online
+version of the pipeline, that can output reduced, wavelength calibrated 1-D
+spectra just seconds after the shutter has closed and the raw data saved to
+disk.
 
 Other planned changes are: to modify the overall architecture of the pipeline,
 since it started as two separated projects and evolved into a single one, there
