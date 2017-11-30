@@ -94,15 +94,16 @@ Our initial plan considered a Python-only project but we had to change that
 because LaCosmic \citep{2001PASP..113.1420V} did not provide satisfactory results and we had to shift
 to using a program called DCR \citep{2004PASP..116..148P} which is written in C,
 it works very well but does not integrate into Python easily, ideally this
-should be converted into a python C++ extension.
+should be converted into a python C++ extension but it is not a high priority
+task.
 LaCosmic implementation is still part of the pipeline and can be selected with a command
 line argument.
-The project is hosted on GitHub therefore is freely available.
+
 %Also we wanted the pipeline to be open source and available for everyone; in fact the full
 %project is available on GitHub.
 
 The Goodman Spectroscopic Pipeline will provide clear advantages to users of the
-Goodman Spectrograph if compared to other tools for data reduction by allowing
+Goodman Spectrograph if(??) compared to other tools for data reduction by allowing
 them to run full processing of their spectra with one-line command and/(while??) producing
 science-quality data.
 
@@ -117,6 +118,7 @@ Spectrograph. However, this is the first one developed not as a solution for one
 specific project, but rather as a community tool. It has been conceived to be
 simple to use and very well documented, so users can clearly understand each
 processing step, and even further develop and modify the software.
+The project is hosted on GitHub therefore is freely available.
 
 \section{Pipeline Concept \& Structure}
 
@@ -125,7 +127,7 @@ processing step, and even further develop and modify the software.
 %but should be part of an integrated system. They evolved into a single project with two main
 %packages that work together.
 In the current stable version (1.0b1) the pipeline is structured as two packages
-with two scripts that call them.
+with two scripts that call them. ({\bf add here..})
 
 %The static structure still needs some refactoring and for sure there will be
 %modifications to the dynamic structure.
