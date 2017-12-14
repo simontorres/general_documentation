@@ -16,3 +16,8 @@ Attended: Cesar, Bruno, Simon.
 - Create informative plots that will be used in the documentation
   - RMS per slit size
   - RMS per grating - for 0.45" slit
+  
+The creation of the library will requiere taking lamps with goodman. The plan is 
+to start after the astronomer observing ends the night. Before starting, an e-mail
+should be sent to soarteam (Cesar will confirm the list) In any case, Bart and 
+Stephen should be included.
