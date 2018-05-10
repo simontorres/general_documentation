@@ -1,0 +1,7 @@
+
+cp /user/simon/data/soar/work/aller/2017-06-12/RED/wecfzsto_0080_CuHeAr_G1200M2_slit103.fits   ~/jupyter/data/ 
+cp /user/simon/data/soar/work/aller/2017-06-12/RED/wecfzsto_0085_HD177409_G1200M2_slit103.fits ~/jupyter/data/ 
+cp /user/simon/data/soar/work/aller/2017-06-10/RED/wecfzsto_0108_CuHeAr_G1200M2_slit103.fits   ~/jupyter/data/
+cp /user/simon/data/soar/work/aller/2017-06-10/RED/wecfzsto_0109_HD177409_G1200M2_slit103.fits ~/jupyter/data/ 
+cp /user/simon/data/soar/work/aller/2017-06-11/RED/wecfzsto_0170_CuHeAr_G1200M2_slit103.fits   ~/jupyter/data/ 
+cp /user/simon/data/soar/work/aller/2017-06-11/RED/wecfzsto_0171_HD177409_G1200M2_slit103.fits ~/jupyter/data/ 

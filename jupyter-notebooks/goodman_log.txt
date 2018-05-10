@@ -1,0 +1,6 @@
+[11:07:51AM][    INFO]: Starting Goodman HTS Pipeline Log
+[11:07:51AM][    INFO]: Local Time    : 2018-05-01 11:07:51.923606
+[11:07:51AM][    INFO]: Universal Time: 2018-05-01 14:07:51.924716
+[03:06:40PM][    INFO]: Starting Goodman HTS Pipeline Log
+[03:06:40PM][    INFO]: Local Time    : 2018-05-01 15:06:40.235760
+[03:06:40PM][    INFO]: Universal Time: 2018-05-01 18:06:40.236388

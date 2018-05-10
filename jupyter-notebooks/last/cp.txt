@@ -1,0 +1,5 @@
+cp -v /user/simon/data/soar/work/aller/2017-06-11/RED/gcfzsto_0171_HD177409_G1200M2_slit103.fits .
+cp -v /user/simon/data/soar/work/aller/2017-06-10/RED/gcfzsto_0109_HD177409_G1200M2_slit103.fits .
+cp -v /user/simon/data/soar/work/aller/2017-06-12/RED/gcfzsto_0085_HD177409_G1200M2_slit103.fits .
+
+
