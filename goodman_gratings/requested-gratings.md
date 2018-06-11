@@ -3,4 +3,4 @@
 This plot was created according to Instrument setup information.
 ```ctios0 /www/SOAR/Forms/INST/data/```
 
-![image](requested-gratings-2017.png)
+![image](requested-gratings-2017-new.png)

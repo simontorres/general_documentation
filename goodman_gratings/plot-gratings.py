@@ -50,9 +50,17 @@ class PlotRequestedGratings(object):
             self.occurrence.append(self.values.count(grating))
 
     def create_plot(self):
-        plt.bar(self.valid_grating, self.occurrence, width=30)
-        plt.xticks(self.valid_grating)
+        plt.rcParams['font.size'] = 24
+        plt.rcParams['figure.figsize'] = (16, 9)
+        plt.title('Gratings Requested During 2017')
+        plt.bar(range(len(self.occurrence)), self.occurrence)
+        plt.xticks(range(len(self.valid_grating)), self.valid_grating)
+        for i in range(len(self.occurrence)):
+            plt.text(i, self.occurrence[i] + 1, '{:d}'.format(self.occurrence[i]), horizontalalignment='center')
+        plt.xlabel("Grating $(l/mm)$")
+        plt.ylabel("Count")
         plt.tight_layout()
+        plt.savefig('requested-gratings-2017-new.png')
         plt.show()
 
 
