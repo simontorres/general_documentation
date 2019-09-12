@@ -1,6 +1,16 @@
-# Requested gratings of 2017
+# Requested gratings for Goodman HTS
 
-This plot was created according to Instrument setup information.
+The plots were created according to Instrument setup information.
 ```ctios0 /www/SOAR/Forms/INST/data/```
 
-![image](requested-gratings-2017-new.png)
+## 2017
+![image](requested-gratings-2017.png)
+
+
+## 2018
+![image](requested-gratings-2018.png)
+
+
+## 2019
+Up to 2019/09/11
+![image](requested-gratings-2019.png)

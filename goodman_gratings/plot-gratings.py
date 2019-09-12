@@ -52,7 +52,7 @@ class PlotRequestedGratings(object):
     def create_plot(self):
         plt.rcParams['font.size'] = 24
         plt.rcParams['figure.figsize'] = (16, 9)
-        plt.title('Gratings Requested During 2017')
+        plt.title('Gratings Requested During 2019')
         plt.bar(range(len(self.occurrence)), self.occurrence)
         plt.xticks(range(len(self.valid_grating)), self.valid_grating)
         for i in range(len(self.occurrence)):
@@ -60,11 +60,11 @@ class PlotRequestedGratings(object):
         plt.xlabel("Grating $(l/mm)$")
         plt.ylabel("Count")
         plt.tight_layout()
-        plt.savefig('requested-gratings-2017-new.png')
+        plt.savefig('requested-gratings-2019.png')
         plt.show()
 
 
 
 if __name__ == '__main__':
-    plot_grating = PlotRequestedGratings(file_name='gratings.txt')
+    plot_grating = PlotRequestedGratings(file_name='gratings_2019.txt')
     plot_grating()
