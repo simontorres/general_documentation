@@ -48,12 +48,15 @@ I used information from several sources
             root   /usr/share/nginx/html;
             index  index.html index.htm;
         }
-
+ 
         location /gsp/ {
-            root /pipeline/webapp/static
             proxy_pass http://localhost:8000/;
             proxy_set_header Host $host;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+        location /static/ {
+            alias /pipeline/webapp/static/;
         }
    }   
    ```
