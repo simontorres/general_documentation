@@ -1,6 +1,6 @@
 jupyter-notebooks/experiments/data/
 **/goodman_log.txt
-# **/.ipynb_checkpoints
+**/.ipynb_checkpoints
 .idea
 WCS_problem/jupyter/data/
 jupyter-notebooks/presentations/Goodman_data_reduction/fits/

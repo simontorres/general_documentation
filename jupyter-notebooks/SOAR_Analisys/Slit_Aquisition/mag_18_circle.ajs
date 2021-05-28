@@ -1,0 +1,5 @@
+#AJS
+filter Filter0 {
+$[phot.mag*] < 18 
+{ draw circle(-$[phot.mag*]) }
+}
