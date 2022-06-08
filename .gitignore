@@ -4,3 +4,4 @@ jupyter-notebooks/experiments/data/
 .idea
 WCS_problem/jupyter/data/
 jupyter-notebooks/presentations/Goodman_data_reduction/fits/
+/jupyter-notebooks/SOAR_Analisys/GSP API Query Example/secrets.cfg

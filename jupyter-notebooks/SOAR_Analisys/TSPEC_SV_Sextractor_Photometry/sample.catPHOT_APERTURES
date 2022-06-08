@@ -1,0 +1,8 @@
+#   1 XWIN_IMAGE             Windowed position estimate along x                         [pixel]
+#   2 YWIN_IMAGE             Windowed position estimate along y                         [pixel]
+#   3 ERRAWIN_IMAGE          RMS windowed pos error along major axis                    [pixel]
+#   4 ERRBWIN_IMAGE          RMS windowed pos error along minor axis                    [pixel]
+#   5 ERRTHETAWIN_IMAGE      Windowed error ellipse pos angle (CCW/x)                   [deg]
+#   6 FLUX_AUTO              Flux within a Kron-like elliptical aperture                [count]
+#   7 FLUXERR_AUTO           RMS error for AUTO flux                                    [count]
+#   8 CLASS_STAR             S/G classifier output                                     
