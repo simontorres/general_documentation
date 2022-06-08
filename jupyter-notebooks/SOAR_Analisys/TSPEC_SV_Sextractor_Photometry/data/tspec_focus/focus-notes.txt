@@ -1,0 +1,2 @@
+eng 13/04 focus val -1042.19 fwhm 2.68 WIDE
+          focus val -1000 
